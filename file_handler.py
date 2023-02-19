@@ -102,7 +102,11 @@ def log(log_dir, message):
     # log event
     file = open(log_dir, "a+")
     file.write(str(message) + \
-               " --- Time: " + \
+               "," + \
+               str(currentDT.strftime("%Y-%m-%d %H:%M:%S")) + \
+               "\n")
+    print(str(message) + \
+               "," + \
                str(currentDT.strftime("%Y-%m-%d %H:%M:%S")) + \
                "\n")
     file.close

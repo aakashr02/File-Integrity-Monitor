@@ -1,6 +1,6 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
+##/usr/bin/env python3
+## -*- coding: utf-8 -*-
+# C:\\Users\\aakas\\Desktop
 """
 driver.py
 
@@ -81,7 +81,10 @@ def driver():
         # compare two dict of hashes
         for diff in list(dictdiffer.diff(old_hash, new_hash)):         
             # ALERT
-            file_handler.log(ALERT_FILE, diff)
+            # print(diff[1][0])
+            # msg = suspicion(diff[1][0])
+            msg = str(diff[0]) +',' + str( diff[1][0])   #  + ',' + msg
+            file_handler.log(ALERT_FILE, msg )
         
         # save the new hash
         file_handler.save_dict(new_hash, \
@@ -129,7 +132,14 @@ def scan():
 if __name__ == "__main__":
     
     # start the driver
-    driver()
+    print("     ----FILE INTEGRITY MONITOR----     \n\n(Press ctrl+C to stop the scan)")
+    print("Enter Root Directory: ")
+    ROOT_DIRECTORY = input()
+    try:
+        driver()
+    except KeyboardInterrupt:
+        file_handler.log(LOG_FILE, "Ending the integrity check...")
+    input()
     
     
     
