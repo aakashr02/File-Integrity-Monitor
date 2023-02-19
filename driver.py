@@ -1,6 +1,4 @@
-##/usr/bin/env python3
-## -*- coding: utf-8 -*-
-# C:\\Users\\aakas\\Desktop
+
 """
 driver.py
 
@@ -23,6 +21,8 @@ import hash_handler
 import logging
 import time
 import dictdiffer  # pip install dictdiffer
+import regex
+from prettytable import PrettyTable
 
 """
 SETTINGS START
@@ -55,19 +55,20 @@ SETTINGS END
 def driver():                       
     
     # start the initial scan
-    file_handler.log(LOG_FILE, "Starting the initial scan...")
+    file_handler.applog(LOG_FILE, "Starting the initial scan...")
+
     INITIAL_FILE_HASHES = scan()
-    
+   
     # save the initial scan dictionary of hashes
     file_handler.save_dict(INITIAL_FILE_HASHES, \
                            SCAN_STORAGE,\
                            LOG_FILE)
-    file_handler.log(LOG_FILE, "Initial scan completed!")
+    file_handler.applog(LOG_FILE, "Initial scan completed!")
     
     
     
     # start the integrity check
-    file_handler.log(LOG_FILE, "Starting the integrity check...")
+    file_handler.applog(LOG_FILE, "Starting the integrity check...")
    
     while True:
         
@@ -81,16 +82,13 @@ def driver():
         # compare two dict of hashes
         for diff in list(dictdiffer.diff(old_hash, new_hash)):         
             # ALERT
-            # add/remove - filename - diff[2][0][0] - status - diff[0]
-            # change - filename - diff[1][0] - status - diff[0]
-            # print(diff[0])
             if(diff[0]=="change"):
                 msg = str(diff[0]) +',' + str( diff[1][0])
             else:
                 msg = str(diff[0]) +',' + str( diff[2][0][0])
-            # msg = suspicion(diff[1][0])
-            # msg = str(diff[0]) +',' + str( diff[1][0])   #  + ',' + msg
-            file_handler.log(ALERT_FILE, msg)
+
+            change=str(diff[0])
+            file_handler.alertlog(ALERT_FILE, msg,change,ROOT_DIRECTORY)
         
         # save the new hash
         file_handler.save_dict(new_hash, \
@@ -138,15 +136,33 @@ def scan():
 if __name__ == "__main__":
     
     # start the driver
-    print("     ----FILE INTEGRITY MONITOR----     \n\n(Press ctrl+C to stop the scan)")
-    print("Enter Root Directory: ")
-    ROOT_DIRECTORY = input()
-    try:
-        driver()
-    except KeyboardInterrupt:
-        file_handler.log(LOG_FILE, "Ending the integrity check...")
-        
-    input()
+    print("\n------FILE INTEGRITY MONITOR------\n")
     
+    while True:
+        print("\nPress ctrl+C to stop the scan")
+        print("Menu:")
+        print("1. Scan for changes in directory")
+        print("2. Regex based filters")
+        print("3. Exit")
+        choice = input("Enter your choice (1-3): ")
+    
+        if choice == "1":
+            print("Enter Root Directory: ")
+            ROOT_DIRECTORY = input()
+            try:
+                driver()
+            except KeyboardInterrupt:
+                file_handler.applog(LOG_FILE, "Ending the integrity check...") 
+                file_handler.disptable()
+                continue 
+        elif choice=="2":
+            print("Enter the Regular Expression: ")
+            regex.search_regex(input(),ALERT_FILE) 
+        elif choice=="3":
+            print("Exiting program...")
+            break
+        else:
+            print("Invalid choice. Please enter a valid choice.")
+
     
     
