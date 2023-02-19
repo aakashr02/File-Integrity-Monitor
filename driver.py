@@ -81,10 +81,16 @@ def driver():
         # compare two dict of hashes
         for diff in list(dictdiffer.diff(old_hash, new_hash)):         
             # ALERT
-            # print(diff[1][0])
+            # add/remove - filename - diff[2][0][0] - status - diff[0]
+            # change - filename - diff[1][0] - status - diff[0]
+            # print(diff[0])
+            if(diff[0]=="change"):
+                msg = str(diff[0]) +',' + str( diff[1][0])
+            else:
+                msg = str(diff[0]) +',' + str( diff[2][0][0])
             # msg = suspicion(diff[1][0])
-            msg = str(diff[0]) +',' + str( diff[1][0])   #  + ',' + msg
-            file_handler.log(ALERT_FILE, msg )
+            # msg = str(diff[0]) +',' + str( diff[1][0])   #  + ',' + msg
+            file_handler.log(ALERT_FILE, msg)
         
         # save the new hash
         file_handler.save_dict(new_hash, \
@@ -139,6 +145,7 @@ if __name__ == "__main__":
         driver()
     except KeyboardInterrupt:
         file_handler.log(LOG_FILE, "Ending the integrity check...")
+        
     input()
     
     
