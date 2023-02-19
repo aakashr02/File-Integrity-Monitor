@@ -1,1 +1,1 @@
-This is a manual for version 1
+This is a manual for version 2
