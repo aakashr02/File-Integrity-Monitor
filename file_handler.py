@@ -12,7 +12,7 @@ import os
 import pickle 
 import datetime
 from prettytable import PrettyTable
-myTable = PrettyTable(["Status","File Name","Time"])
+myTable = PrettyTable(["Status","File Name","Flag","Time"])
 #==============================================================================
 # Recursively walks the directory tree
 # Finds directories and files
