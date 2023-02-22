@@ -161,8 +161,11 @@ if __name__ == "__main__":
                 file_handler.disptable()
                 continue 
         elif choice=="2":
-            print("Enter the Regular Expression: ")
-            regex.search_regex(input(),ALERT_FILE) 
+            email=input("Enter Email Address: ")
+            rg = input("Enter the Regular Expression: ")
+            regex.search_regex(rg,ALERT_FILE,email)
+            # print("Enter the Regular Expression: ")
+            # regex.search_regex(input(),ALERT_FILE) 
         elif choice=="3":
             print("Exiting program...")
             break
