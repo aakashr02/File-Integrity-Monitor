@@ -18,6 +18,7 @@ Creates alerts for:
 # import all the libraries needed
 import file_handler
 import hash_handler
+import suspicionDetection
 import logging
 import time
 import dictdiffer  # pip install dictdiffer
@@ -83,10 +84,14 @@ def driver():
         for diff in list(dictdiffer.diff(old_hash, new_hash)):         
             # ALERT
             if(diff[0]=="change"):
-                msg = str(diff[0]) +',' + str( diff[1][0])
+                msg = str(diff[0]) +',' + str( diff[1][0]) # + virusTotal.check_hash(diff)
+                msg = msg + ',' + suspicionDetection.check(diff[2][0][0],diff[2][1])
             else:
                 msg = str(diff[0]) +',' + str( diff[2][0][0])
-
+                if(diff[0]=="add"):
+                    msg = msg + ',' + suspicionDetection.check(diff[2][0][0],diff[2][0][1])
+                else:
+                    msg = msg + ',' + " - "
             change=str(diff[0])
             file_handler.alertlog(ALERT_FILE, msg,change,ROOT_DIRECTORY)
         
