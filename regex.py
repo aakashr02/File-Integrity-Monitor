@@ -4,7 +4,7 @@ def search_regex(regex,file):
     add=0
     change=0
     remove = 0
-    myTable = PrettyTable(["Status", "File Name", "Time"])
+    myTable = PrettyTable(["Status", "File Name","Flag", "Time"])
     myTable
     open_file = open(file,'r')
     for f in open_file:
