@@ -22,13 +22,15 @@ This version is the basic version of the application.Which computes the hash of 
 Key Features-
 * Computing the hashes of all files in given directory and its sub directory
 * Detect for changes in file content in directory
-* Recorded the changes in 'alert.log' along with the time of detection
-* Recorded the start and end time of the scan session in 'app.log'
+* Recording the changes in 'alert.log' along with the time of detection
+* Recording the start and end time of the scan session in 'app.log'
 
 
 #### Version 1.1
 
 Bug Fixing-
+* Bug in detecting the type of change(Add/Remove) was fixed
+
 
 Key Features-
 * Classifying the type of change(Add/Modify/Delete)
@@ -39,18 +41,30 @@ Key Features-
 ### Version 2
 
 Key Features-
-* Creating the 
+* Providing a regex based filter for user to filter the log changes according to their needs
+* Providing a menu for user for navigating between the File Monitoring and regex
 
 
 ### Version 3
 
 Key Features-
+* Flagging whether the file is suspicious using two methods-
+  *PE File Module
+  *Virus Total API
 
 #### Version 3.1
+Bug Fixing-
+*Bug in the regex based output fixed
+*Error in formatting the results fixed
 
 Key Features-
+* Accepting the regex expression from the user for filtering the records
+* Tabulating the results of the Scanned session and regex using pretty table module
+* Formatting the output further for better user convenience
 
 ### Version 4
 
 Key Features-
-
+* Creating a seperate log file for storing the user filtered records
+* Writing  the filtered records into 'result.log' for communicating the results
+* Mailing the report to the user for their further references with a appropriate styling and formatting
