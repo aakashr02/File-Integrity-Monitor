@@ -24,6 +24,8 @@ def mailing(email):
         <body>
             <h3 style="color:#5c66f2;">Log Results</h3>
             Here are the results for the regular expression that you queried. Please Find the attachments!!!!!!!
+            <p style="color:#606060;">With Regards<br>
+            Team Securazeta</p>
         </body>
     </html>
     """, subtype='html')
