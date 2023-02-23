@@ -49,8 +49,8 @@ Key Features-
 
 Key Features-
 * Flagging whether the file is suspicious using two methods-
-  ** PE File Module
-  ** Virus Total API
+  * PE File Module
+  * Virus Total API
 
 #### Version 3.1
 
