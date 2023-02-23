@@ -53,6 +53,7 @@ Key Features-
   *Virus Total API
 
 #### Version 3.1
+
 Bug Fixing-
 *Bug in the regex based output fixed
 *Error in formatting the results fixed
