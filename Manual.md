@@ -6,7 +6,7 @@ The file integrity monitor checks for the integrity of your directory and the fi
 
 ## Version History
 ### Version 1
-
+#### Version 1.1
 
 
 
