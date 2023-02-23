@@ -26,4 +26,5 @@ def search_regex(regex,file,email):
     print(myTable)
     resultfile.close()
     mail.mailing(email)
+    print("Email has been sent successfully!!!!!!!!!!!")
     
