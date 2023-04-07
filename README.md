@@ -13,7 +13,7 @@ As a first step, a log file of the directory of interest is created. This contai
 </div>
 
 
-##Comparsion and Analysis with Other Tools
+## Comparsion and Analysis with Other Tools
 
 | Feature | File Integrity Monitoring System | Wazuh File Integrity Monitoring System |
 | :---: | :---: | :---: |
