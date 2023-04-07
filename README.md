@@ -15,7 +15,7 @@ As a first step, a log file of the directory of interest is created. This contai
 
 <br><br>
 
-## Comparsion and Analysis with Other Tools
+## Comparison and Analysis with Other Tools
 <br>
 
 ### 1. Wazuh File Integrity Monitoring System
