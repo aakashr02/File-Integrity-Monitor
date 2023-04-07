@@ -13,10 +13,12 @@ As a first step, a log file of the directory of interest is created. This contai
 </div>
 
 
-
+<br><br>
 
 ## Comparsion and Analysis with Other Tools
+<br>
 
+### Wazuh File Integrity Monitoring System
 | Feature | File Integrity Monitoring System | Wazuh File Integrity Monitoring System |
 | :---: | :---: | :---: |
 | Directory and file monitoring | Monitors a single directory and its files | Can monitor multiple directories and files across multiple servers |
