@@ -35,7 +35,7 @@ def hash_file_sha256(directory, LOG_FILE):
             return sha256_hash.hexdigest()
         
     except Exception as e:
-        file_handler.log(LOG_FILE, \
+        file_handler.applog(LOG_FILE, \
                          "Error while taking the hash values")
 
 

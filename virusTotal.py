@@ -25,61 +25,41 @@ def checkhash(hsh):
         except Exception:
                         print ('There is something wrong with your hash \n' + Exception)
 
-# def main():
-#         parser = argparse.ArgumentParser(description="Virus Total Hash Check by  Mitul M Narotam")
-#         parser.add_argument('-o', '--output', required=True, help='Output File Location EX: /Home/Desktop/output.txt ')
-#         parser.add_argument('-H', '--hash', type=checkhash, required=False, help='Single Hash EX: d41d8cd98f00b204e9800998ecf8427e')
-#         parser.add_argument('-u', '--unlimited', action='store_const', const=1, required=False, help='Changes the 26 second sleep timer to 1.')
-#         args = parser.parse_args()
-                                                                                                                                                                                                                                           
-#         #Run for hash + key                                                                                                                                                                                                                
-#         if args.hash and key:                                                                                                                                                                                                              
-#                 file = open(args.output,'w+')                                                                                                                                                                                              
-#                 file.write('\n\nBelow is the identified malicious hash.\n\n')                                                                                                                                                              
-#                 file.close()                                                                                                                                                                                                               
-#                 VT_Request(key, args.hash.rstrip(), args.output)                                                                                                                                                                           
-                                                                                                                                                                                                                                           
+#Function to connect to VirusTotal database and determine if the given hash is Malicious                                                                                                                                                                                                                                           
 def VT_Request(hash):
         params = {'apikey': key, 'resource': hash}
-        url = requests.get('https://www.virustotal.com/vtapi/v2/file/report', params=params)
-        json_response = url.json()
-        # x = str(json_response)
-        # x = x.replace("'", '"')
-        # x = x.replace("False", '"False"')
-        # x = x.replace("True", '"True"')
-        # x = x.replace("None", '"None"')
-
-        # parsed = json.loads(x)
-        # y =json.dumps(parsed, indent = 4, sort_keys=True)
-
-        # print ("\n")
-        response = int(json_response.get('response_code'))
-        if response == 0:
-                # print (y + "\n\n" + hash + ' is not in Virus Total')
-                # file = open(output,'a')
-                # file.write(y + "\n\n" + hash + ' is not in Virus Total')
-                # file.write('\n')
-                # file.close()
-                return 0
-        elif response == 1:
-                positives = int(json_response.get('positives'))
-                if positives == 0:
-                        return 0;
-                        # print (y + "\n\n" + hash + ' is not malicious')
-                        # file = open(output,'a')
-                        # file.write(y + "\n\n" + hash + ' is not malicious')
-                        # file.write('\n')
-                        # file.close()
-                else:
-                        # print (y + "\n\n" + hash + ' is malicious')
-                        # file = open(output,'a')
-                        # file.write(y + "\n\n" + hash + ' is a malicious hash. Hit Count:' + str(positives))
-                        # file.write('\n')
-                        # file.close()
-                        return 1
-        else:
-                return 0
-                # print (y + "\n\n" + hash + ' could not be searched. Please try again later.')
+        try:
+                # passing the hash to the virusTotal API
+                url = requests.get('https://www.virustotal.com/vtapi/v2/file/report', params=params)
+                if url.status_code==200:
+                        json_response = url.json()
+                        
+                        #Get the response code indicating if the hash was present in the VirusTotal database
+                        response = int(json_response['response_code'])
+                        
+                        # if the hash is not present, it is likely to be safe
+                        if response == 0:
+                                return 0
+                        
+                        # if the hash is present
+                        elif response == 1:
+                                # Get the number of vendors who mark the hash as malicious
+                                positives = int(json_response['positives'])
+                                
+                                # if no vendor marks it malicious return false
+                                if positives == 0:
+                                        return 0;
+                                
+                                # if some vendor marks it malicious return true
+                                else:
+                                        return 1
+                        else:
+                                return 0
+        
+        # if the VirusTotal Database cannot be contacted return -1                        
+        except requests.exceptions.RequestException as e:
+                return -1;
+                
 # running the program
 # if __name__ == '__main__':
         # main()
