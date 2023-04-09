@@ -1,8 +1,10 @@
 import pefile
 import subprocess
 #1.Import table analysis: 
+#Counting no of times it counted as suspicious or not  by different ways
 suspicious=0
 nsuspicious=0
+#Checking whether no of imports is greater 100
 def check_imports(filename):
     pe = pefile.PE(filename)
     num_imports = len(pe.DIRECTORY_ENTRY_IMPORT)
