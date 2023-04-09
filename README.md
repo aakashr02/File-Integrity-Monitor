@@ -1,6 +1,6 @@
 # File-Integrity-Monitor
 The file integrity monitor checks for the integrity of your directory and the files in it. It allows the user to perform log analysis on the changes logged for the directory.
-As a first step, a log file of the directory of interest is created. This contains four comma separated values corresponding to the file name, status, time and suspicion check. The status is determined by using hashing mechanism to compare and conclude if addition, modification or deletion of files has occured. Suspicion is determined by using two methods: Virus Total to check for suspicious hashes and PE file module to analyse executable files. Lastly, the product allows for manual log analysis using a regex based filter to acquire relevant log data. A copy of the selected records shall be mailed to the user on request. 
+As a first step, a log file of the directory of interest is created. This contains four comma separated values corresponding to the file name, status, time and suspicion check. The status is determined by using hashing mechanism to compare and conclude if addition, modification or deletion of files has occured. Suspicion is determined by using two methods: Virus Total to check for suspicious hashes and PE file module to analyse executable files. Lastly, the product allows for manual log analysis using a regex based filter to acquire relevant log data. A copy of the selected records shall be mailed to the user on request. The user manual has been attached for a Convenient installation and  Setup <a href="https://drive.google.com/file/d/199RgCPBFLt9NBlXlq4lKmZoXTXxC-swd/view?usp=sharing" target="_blank">Click here</a>.
 
 
 
@@ -42,7 +42,7 @@ Overall, Wazuh file integrity monitoring system offers more advanced features an
 | Directory and file monitoring | Monitors a single directory and its files | Can monitor multiple directories and files across multiple servers |
 | Change detection | Uses hashing mechanisms to detect changes in files | Offers similar functionality with additional features such as rootkit detection |
 | Suspicious activity detection | Uses Virus Total to check for suspicious hashes | Can detect rootkits and detect suspicious activity using signatures and rules |
-| Uses PE file module to analyze executable files | Can detect rootkits and detect suspicious activity using signatures and rules |
+| Uses PE file module to analyze executable files | Can detect rootkits and detect suspicious activity using signatures and rules | Can detect rootkits and detect suspicious activity using signatures and rules |
 | Real-time alerts | 	Provides real-time alerts when changes are detected | Provides real-time alerts and notifications for any anomalies or security threats |
 | Manual log analysis | Allows manual log analysis using regex-based filter | Provides centralized log management and analysis with Elasticsearch and Kibana |
 | Integration | Does not offer integration with other security tools | Integrates with other security tools such as vulnerability scanners, SIEMs, and IDS |
