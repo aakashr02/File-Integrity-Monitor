@@ -42,7 +42,7 @@ Overall, Wazuh file integrity monitoring system offers more advanced features an
 | Directory and file monitoring | Monitors a single directory and its files | Can monitor multiple directories and files across multiple servers |
 | Change detection | Uses hashing mechanisms to detect changes in files | Offers similar functionality with additional features such as rootkit detection |
 | Suspicious activity detection | Uses Virus Total to check for suspicious hashes | Can detect rootkits and detect suspicious activity using signatures and rules |
-| Uses PE file module to analyze executable files | Can detect rootkits and detect suspicious activity using signatures and rules |
+| Uses PE file module to analyze executable files | Can detect rootkits and detect suspicious activity using signatures and rules | Can detect rootkits and detect suspicious activity using signatures and rules |
 | Real-time alerts | 	Provides real-time alerts when changes are detected | Provides real-time alerts and notifications for any anomalies or security threats |
 | Manual log analysis | Allows manual log analysis using regex-based filter | Provides centralized log management and analysis with Elasticsearch and Kibana |
 | Integration | Does not offer integration with other security tools | Integrates with other security tools such as vulnerability scanners, SIEMs, and IDS |
